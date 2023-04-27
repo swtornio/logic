@@ -65,6 +65,23 @@ for email in emails:
     # print(email)
     base_letters[get_base_letters(email)] = base_letters.get(get_base_letters(email), 0) + 1
 sorted_base = sorted(base_letters.items(), key=lambda x: x[1], reverse=True)
+two_chars = list()
+three_chars = list()
 for key, value in sorted_base:
-    print(f"{key}: {value}")
+    if len(key) == 2:
+        # print(f"{key}: {value}")
+        two_chars.append(key)
+    if len(key) == 3:
+        # print(f"{key}: {value}")
+        three_chars.append(key)
+print(f"There are {len(two_chars)} unique 2char base letters.")
+print(f"There are {len(three_chars)} unique 3char base letters.")
 print(f"There are {len(sorted_base)} unique base letters.")
+
+if args.output:
+    output_file = open(args.output, "w")
+    for two_char in two_chars:
+        for num in range(151, 201):
+            output_file.write(f"{two_char}{num}\n")
+    output_file.close()
+
